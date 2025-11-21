@@ -349,6 +349,71 @@ class Student {
     }
 }
 
-const s1=Student('piyush')
+// const s1=Student('piyush')
 
-s1.getName()
+// s1.getName()
+
+
+const flattenTheArray=(A) => {
+    const arr=[]
+
+    const flatTheArray=(A) => {
+        if (Array.isArray(A)) {
+            A.forEach((ele) => {
+                if (Array.isArray(ele)) {
+                    flatTheArray(ele)
+                } else {
+                    arr.push(ele)
+                }
+            })
+        }
+    }
+
+    flatTheArray(A)
+    return arr
+}
+
+const A=[1, [2, 3, 4, [5, 6, 7, [8, 9, 10, 11, 12]]]]
+
+const res=flattenTheArray(A)
+
+// console.log("res>>>>>>", res);
+
+
+// Using forEach (does not wait for async operations)
+async function processItemsForEach(items) {
+    items.forEach(async (item) => {
+        await someAsyncOperation(item); // This await only pauses the callback, not the forEach loop
+        console.log(`Processed (forEach): ${item}`);
+    });
+    console.log("forEach loop finished (but async operations might still be pending)");
+}
+
+// Using map and Promise.all (waits for all async operations)
+async function processItemsMapPromiseAll(items) {
+    const promises=items.map(async (item) => {
+        await someAsyncOperation(item);
+        console.log(`Processed (map/Promise.all): ${item}`);
+    });
+    await Promise.all(promises); // Waits for all promises to resolve
+    console.log("map/Promise.all finished");
+}
+
+// // Using for...of (waits for each async operation sequentially)
+async function processItemsForOf(items) {
+    for (const item of items) {
+        await someAsyncOperation(item); // Waits for each operation to complete before moving to the next
+        console.log(`Processed (for...of): ${item}`);
+    }
+    console.log("for...of loop finished");
+}
+
+async function someAsyncOperation(item) {
+    return new Promise(resolve => setTimeout(() => resolve(), 100)); // Simulate async work
+}
+
+const data=[1, 2, 3];
+processItemsForEach(data);
+processItemsMapPromiseAll(data);
+processItemsForOf(data);
+
