@@ -17,3 +17,5 @@
 17. validParanteseis
 18. SubArrayWithDecreasingWeights
 19. RecursiveAllSubsets
+20. TwoSum
+21. validParanteseisStackBased

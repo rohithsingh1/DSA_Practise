@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            body {
+                height: 3000px;
+                font-family: Arial;
+                padding: 20px;
+            }
+
+            #box {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: black;
+                color: white;
+                padding: 15px;
+                border-radius: 8px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Scroll Page</h1>
+        <p>Open console and scroll to see throttle effect</p>
+
+        <div id="box">Scroll Count: 0</div>
+        <script>
+            let count=0;
+            const box=document.getElementById("box");
+
+            function handleScroll() {
+                count++
+                console.log("Scroll event:>>>>", count);
+                box.innerText="Scroll Count: "+count;
+            }
+
+            function throttle(cb, delay) {
+                let waiting=false
+                return (...args) => {
+                    if (!waiting) {
+                        cb(...args)
+                        waiting=true
+
+                        setTimeout(() => {
+                            waiting=false
+                        }, delay)
+                    }
+                }
+            }
+
+            window.addEventListener("scroll", throttle(handleScroll, 1000))
+        </script>
+    </body>
+
+</html>

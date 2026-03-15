@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <input type="text" id="searchInput" placeholder="search Input....." />
+        <ul id="results"></ul>
+        <script>
+            const input=document.getElementById("searchInput");
+            const list=document.getElementById("results");
+
+            function debounce(cb, delay) {
+                let timer=null
+                return (...args) => {
+                    if (timer) {
+                        clearTimeout(timer)
+                    }
+                    timer=setTimeout(() => {
+                        cb(...args)
+                    }, delay)
+                }
+            }
+            async function fetchResults(query) {
+                if (!query) {
+                    list.innerHTML=''
+                    return
+                }
+                const res=await fetch("https://jsonplaceholder.typicode.com/comments")
+                const data=await res.json()
+                const filteredData=data.filter((item) => {
+                    return item.name.toLowerCase().includes(query.toLowerCase())
+                })
+
+                list.innerHTML=filteredData.slice(0, 10).map((item, index) => {
+                    return `<li key=${index} >${item.name}</li>`
+                }).join("")
+            }
+
+            const debouncedFunction=debounce(fetchResults, 500)
+
+            input.addEventListener("input", (event) => {
+                debouncedFunction(event.target.value)
+            })
+        </script>
+    </body>
+
+</html>

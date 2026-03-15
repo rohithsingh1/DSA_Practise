@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="preload" as="font" href="font.woff2" crossorigin="use-credentials" s/>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: #f3f4f6;
+            }
+
+            /* Container */
+            .carousel-container {
+                position: relative;
+                width: 600px;
+                margin: 60px auto;
+                overflow: hidden;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            /* Image */
+            #carousel-img {
+                width: 100%;
+                height: 350px;
+                object-fit: cover;
+                display: block;
+            }
+
+            /* Arrows */
+            .previous,
+            .next {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 40px;
+                height: 40px;
+                background: rgba(0, 0, 0, 0.5);
+                cursor: pointer;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 22px;
+                user-select: none;
+            }
+
+            .previous {
+                left: 10px;
+            }
+
+            .next {
+                right: 10px;
+            }
+
+            .previous::after {
+                content: "❮";
+            }
+
+            .next::after {
+                content: "❯";
+            }
+
+            .previous:hover,
+            .next:hover {
+                background: rgba(0, 0, 0, 0.8);
+            }
+
+            /* Indicators */
+            .indicators {
+                position: absolute;
+                bottom: 15px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .indicator-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            /* .indicator-list li {
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background: white;
+                margin: 0 6px;
+                border-radius: 50%;
+                cursor: pointer;
+                opacity: 0.6;
+                transition: 0.3s;
+            } */
+
+            .indicator-list li:hover {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+
+            /* Slide toggle */
+            .slide-input {
+                text-align: center;
+                margin-top: 15px;
+                font-size: 14px;
+            }
+
+            .indicator-list li {
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background: rgba(255, 255, 255, 0.6);
+                margin: 0 6px;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: 0.3s;
+                border: 1px solid rgba(0, 0, 0, 0.3);
+                /* 👈 add this */
+            }
+
+            .active-dot {
+                background: #ff3b3b !important;
+                transform: scale(1.2);
+            }
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <div class="carousel-container w-50 mx-auto mt-40">
+                <img src="./assets/img-0.jpg" id="carousel-img" loading="eager" fetchpriority=""
+                    height="100%" width="100%" />
+                <div class="previous" id="previous"></div>
+                <div class="next" id="next"></div>
+                <div class="indicators">
+                    <ul class="indicator-list">
+                        <li value="1" id="one"></li>
+                        <li value="2" id="Two"></li>
+                        <li value="3" id="Three"></li>
+                        <li value="4" id="Four"></li>
+                        <li value="5" id="Five"></li>
+                    </ul>
+                </div>
+                <div class="slide-input">
+                    <input type="checkbox" class="test" id="slide" />Slide
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const imageElement=document.getElementById("carousel-img")
+            const previousButton=document.getElementById("previous")
+            const nextButton=document.getElementById("next")
+            const indicators=document.querySelectorAll(".indicator-list li")
+            const slideCheckupBox=document.getElementById("slide")
+
+            let currentIndex=0
+            let intervalId=null
+            const totalImages=5
+            const slideDuration=3000
+
+            function updateImage(index) {
+                currentIndex=index
+                imageElement.src=`./assets/img-${currentIndex+1}.jpg`
+
+                indicators.forEach(dot => dot.classList.remove("active-dot"))
+                indicators[currentIndex].classList.add("active-dot")
+            }
+
+            function showNext() {
+                currentIndex=(currentIndex+1)%totalImages
+                updateImage(currentIndex)
+            }
+
+            function showPrevious() {
+                currentIndex=(currentIndex-1+totalImages)%totalImages
+                updateImage(currentIndex)
+            }
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener("click", () => {
+                    updateImage(index)
+                })
+            })
+
+            previousButton.addEventListener("click", showPrevious)
+
+            nextButton.addEventListener("click", showNext)
+
+            slideCheckupBox.addEventListener("change", function () {
+                if (this.checked) {
+                    intervalId=setInterval(showNext, slideDuration)
+                } else {
+                    clearInterval(intervalId)
+                }
+            })
+
+            updateImage(1)
+        </script>
+
+    </body>
+
+</html>
