@@ -19,3 +19,4 @@
 19. RecursiveAllSubsets
 20. TwoSum
 21. validParanteseisStackBased
+22. Maximum Strength of a Group
