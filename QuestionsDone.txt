@@ -26,3 +26,7 @@
 26. Remove Duplicates from Sorted Array II
 27. majorityElement
 28. Rotate Array
+29. Best Time to Buy and Sell Stock
+30. Best Time to Buy and Sell Stock II
+31. Trapping Rain Water
+32. H-Index
