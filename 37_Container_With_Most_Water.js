@@ -28,9 +28,6 @@ const testCases=[
     {
         nums: [1, 1]
     },
-    // {
-    //     nums: ['club', 'clove', 'clap']
-    // },
 ]
 
 testCases.forEach((testCase) => {
