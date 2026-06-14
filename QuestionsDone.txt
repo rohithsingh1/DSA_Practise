@@ -39,3 +39,4 @@
 39. Two Sum II - Input Array Is Sorted
 40. Roman to Integer
 41. Insert Delete GetRandom
+42. Find_the_Index_of_the_First_Occurrence_in_a_String
