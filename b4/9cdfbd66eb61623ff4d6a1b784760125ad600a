@@ -1,0 +1,26 @@
+python_DSA/6_Subtree_of_Another_Tree.py
+  h_66f393e93fb8bf 1-4,6-8,10,12,18-23,25,28
+  s_5547ae715c33a8::t_cf1e3bd2caa831 5
+  s_5547ae715c33a8::t_d47090865abc51 9,11,13-17,24,26-27,29-33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "b49cdfbd66eb61623ff4d6a1b784760125ad600a",
+  "prompts": {},
+  "humans": {
+    "h_66f393e93fb8bf": {
+      "author": "rohithsingh <rohithsinghthakur3@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_5547ae715c33a8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa1e4-b9b8-7971-87b1-2004dfd58bc7",
+        "model": "gpt-5.5"
+      },
+      "human_author": "rohithsingh <rohithsinghthakur3@gmail.com>"
+    }
+  }
+}
