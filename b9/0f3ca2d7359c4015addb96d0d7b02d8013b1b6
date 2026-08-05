@@ -1,0 +1,14 @@
+python_DSA/18_Longest_Palindromic_Substring.py
+  h_66f393e93fb8bf 1-80
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "b90f3ca2d7359c4015addb96d0d7b02d8013b1b6",
+  "prompts": {},
+  "humans": {
+    "h_66f393e93fb8bf": {
+      "author": "rohithsingh <rohithsinghthakur3@gmail.com>"
+    }
+  }
+}
