@@ -1,0 +1,14 @@
+python_DSA/23_Remove_Nth_Node_From_End_of_List.py
+  h_66f393e93fb8bf 1-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "52f83c64445d7ad0d4f17ca17cc02af35ffc0aad",
+  "prompts": {},
+  "humans": {
+    "h_66f393e93fb8bf": {
+      "author": "rohithsingh <rohithsinghthakur3@gmail.com>"
+    }
+  }
+}
